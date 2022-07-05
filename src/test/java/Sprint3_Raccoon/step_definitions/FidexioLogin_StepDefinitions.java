@@ -46,22 +46,24 @@ public class FidexioLogin_StepDefinitions {
 
     @When("user enters a valid {string} and {string}")
     public void user_enters_a_valid_and(String username, String password) {
+
+
         fidexioLoginPage.usernameField.sendKeys(username);
         fidexioLoginPage.passwordField.sendKeys(password);
         fidexioLoginPage.loginButton.click();
 
+
     }
 
 
-    @When("user leaves the username or password or both fields empty and clicks login button")
-    public void userLeavesTheUsernameOrPasswordOrBothFieldsEmptyAndClicksLoginButton() {
+    @When("User don't try to type credentials")
+    public void userDonTTryToTypeCredentials() {
 
         fidexioLoginPage.loginButton.click();
     }
 
-
-    @Then("user sees the warning message -Please fill out this field-")
-    public void userSeesTheWarningMessagePleaseFillOutThisField() {
+    @Then("user sees the warning message {string}")
+    public void userSeesTheWarningMessage(String arg0) {
 
         System.out.println(fidexioLoginPage.usernameField.getAttribute("validationMessage"));
     }
