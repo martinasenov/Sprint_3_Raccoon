@@ -44,7 +44,7 @@ Background: User is expected to be on the login page
       | pomanager10@info.com   |   posmanager   |
       | salemanager15@info.com |   salesmanager |
 
-
+@wip
   Scenario Outline: Users try to log in with invalid password
     Given user is on the login page
     When user enters a valid "<username>" and "<invalidPassword>"
@@ -54,8 +54,9 @@ Background: User is expected to be on the login page
       | pomanager10@info.com   |   posmanager      |
       | salemanager15@info.com |   salesmanager    |
 
+
   @wip
-  Scenario : The user clicks on the login button with leaving username or password field or both.
+  Scenario: The user sees the "Please fill out this field" message if the password or username text boxes are empty
     Given user is on the login page
-    When user leaves the username or password or both fields empty and clicks login button
-    Then user sees the warning message -Please fill out this field-
+    When User don't try to type credentials
+    Then user sees the warning message "Please fill out this field"
