@@ -24,5 +24,15 @@ public class FidexioLoginPage {
  @FindBy(xpath="//*[@class='oe_topbar_name']")
  public WebElement accountName;
 
+ @FindBy(xpath= "//*[@class='btn btn-link pull-right']")
+ public WebElement resetPassword;
+
+
+ @FindBy(xpath = "//*[@class='dropdown-menu']//li//a[@data-menu='logout']")
+ public WebElement logoutButton;
+
+
+ @FindBy(xpath = "//*[@class='modal-header']//h4[@class='modal-title']")
+ public WebElement sessionExpiredMessage;
 
 }

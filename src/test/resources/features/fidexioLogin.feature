@@ -18,45 +18,73 @@ Feature: Fidexio Login functionality and verifications
 
   6- Verify if the ‘Enter’ key of the keyboard is working correctly on the login page.
 
-  Accounts are: PosManager, SalesManager
 
 Background: User is expected to be on the login page
   Given user is on the login page
 
 
-  Scenario Outline: Users log in with valid credentials
+  @FIDEX-424 @LoginAutomated
+  Scenario Outline: 1) Verify that PosManager and SalesManager can log in with the valid credentials
     Given user is on the login page
     When user enters the "<username>" and password "<password>"
     Then user is on the homepage and sees the "<username>" name on the top right
     Examples:
-      | username                |   password     |
-      | posmanager10@info.com   |   posmanager   |
-      | salesmanager15@info.com |   salesmanager |
+      | username                |  password     |
+      | posmanager10@info.com   |  posmanager   |
+      | salesmanager15@info.com |  salesmanager |
 
 
-
-  Scenario Outline: Users try to log in with invalid user name
+  @FIDEX-425 @LoginAutomated
+  Scenario Outline: 2)Verify that "Wrong login/password" is displayed when valid username and invalid password entered by the both users(PosManager and SalesManager)
     Given user is on the login page
     When user enters an "<invalidUsername>" and valid "<password>"
-
     Examples:
-      | invalidUsername        |   password     |
-      | pomanager10@info.com   |   posmanager   |
-      | salemanager15@info.com |   salesmanager |
+      | invalidUsername          | password     |
+      | invalidUsername@info.com | posmanager   |
+      | invalidUsername@info.com | salesmanager |
 
-@wip
-  Scenario Outline: Users try to log in with invalid password
+
+
+  @FIDEX-426 @LoginAutomated
+  Scenario Outline: 3)Verify that "Wrong login/password" is displayed when invalid username and valid password entered by the both users(PosManager and SalesManager)
     Given user is on the login page
     When user enters a valid "<username>" and "<invalidPassword>"
 
     Examples:
-      | username               |   invalidPassword |
-      | pomanager10@info.com   |   posmanager      |
-      | salemanager15@info.com |   salesmanager    |
+      | username                | invalidPassword |
+      | posmanager10@info.com   | invalidpassword |
+      | salesmanager15@info.com | invalidpassword |
 
 
-  @wip
-  Scenario: The user sees the "Please fill out this field" message if the password or username text boxes are empty
+
+  @FIDEX-427 @LoginAutomated
+  Scenario: 4)Verify that "Please fill out this field" message is displayed if the password or username is empty.
     Given user is on the login page
     When User don't try to type credentials
-    Then user sees the warning message "Please fill out this field"
+    Then user sees the warning message "Please fill out this field."
+
+
+  @FIDEX-428 @LoginAutomated
+  Scenario: 5) Verify that the user lands on the ‘reset password’ page after clicking on the "Reset password" link
+    Given user is on the login page
+    When user clicks on the -Reset Password- link
+    Then user lands on the reset password page
+
+  @FIDEX-429 @LoginAutomated
+  Scenario: 6)Verify that the user sees the password in bullet signs by default
+    Given user is on the login page
+    When user types something in the password field
+    Then user sees the characters in bullet sign
+
+
+  @FIDEX-430 @LoginAutomated
+  Scenario Outline: 7)Verify if the ‘Enter’ key of the keyboard is working correctly on the login page.
+    Given user is on the login page
+    When User enters username "<username>"
+    And User enters password "<password>"
+    And User presses the Enter key
+    Then User should see the home page and username "<username>" on the top right
+    Examples: Valid Credentials
+      | username | password |
+      | salesmanager10@info.com | salesmanager |
+      | posmanager10@info.com | posmanager |

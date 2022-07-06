@@ -12,15 +12,17 @@ import org.junit.runner.RunWith;
 
         "html:target/cucumber-report.html",
         "rerun:target/rerun.txt",
- //test
+       "json:target/Destination/cucumber.json"
+
 },
         features = "src/test/resources/features",
         glue="Sprint3_Raccoon/step_definitions",
         dryRun =false,
-        tags ="@wip"
+        tags ="@LogoutAutomated"
 
 )
 public class CukesRunner {
+
 
 
 }
